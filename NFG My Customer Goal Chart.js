@@ -243,15 +243,17 @@ define(['N/ui/serverWidget','N/search','N/runtime'], function(serverWidget,searc
         let today = dayofyear(new Date());
         let thisMonth = (new Date()).getMonth();
         actualCustomers = actualCustomers.slice(0, thisMonth + 1);
-        actualCustomers.unshift(0);
-        log.debug(typeof actualCustomers, actualCustomers);
+        actualCustomers.unshift("0");
+        log.debug("actualCusotmer 2nd index", actualCustomers[2]);
         log.debug('Today', today);
 
-        let aData = buildAData(today, gData, actualCustomers);
-        let fillColor = actualCustomers[thisMonth + 1] >= projectedCustomers[thisMonth + 1] ? /*Green*/ 'rgba(175,189,33,.5)' : /*Red*/ 'rgba(181,18,27,.5)';
-        log.debug('aData', aData);
+
+        let fillColor = parseInt(actualCustomers[thisMonth+1]) >= parseInt(projectedCustomers[thisMonth + 1]) ? /*Green*/ 'rgba(175,189,33,.5)' : /*Red*/ 'rgba(181,18,27,.5)';
+        log.debug('thisMonth', thisMonth);
         log.debug('fill color', fillColor);
 
+        let aData = buildAData(today, gData, actualCustomers);
+        log.debug("aData", aData);
         var myHTML = '<html lang="en"><head><title>Chart.js demo</title> <script src="https://3450792.app.netsuite.com/core/media/media.nl?id=16470552&c=3450792&h=9742d268b11975521eb1&_xt=.js"></script>\n' +
             '</head>\n' +
             '<body>\n' +
